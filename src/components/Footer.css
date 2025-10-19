@@ -1,0 +1,240 @@
+/* Footer Styles from original Cold Jet site */
+
+.site-footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-white);
+}
+
+.site-footer__top {
+  padding: var(--space-xxl) 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .site-footer__top {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__top {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+.site-footer__contact {
+  color: var(--color-white);
+}
+
+.site-footer__logo {
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.site-footer__logo img {
+  max-width: 200px;
+  height: auto;
+}
+
+.site-footer__address-title {
+  color: var(--color-white);
+  opacity: 0.5;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-sm);
+}
+
+.site-footer address {
+  color: var(--color-white);
+  font-style: normal;
+  line-height: inherit;
+  margin-bottom: var(--space-md);
+}
+
+.site-footer__social {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-md) 0 0;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.site-footer__social li {
+  display: inline-block;
+}
+
+.site-footer__social a {
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.site-footer__social a:hover {
+  opacity: 0.7;
+}
+
+.site-footer__social svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
+.site-footer__nav--main {
+  margin-top: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .site-footer__nav--main {
+    margin-top: 0;
+  }
+}
+
+.site-menu--footer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .site-menu--footer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-menu--footer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.site-menu--footer .site-menu__item {
+  display: block;
+}
+
+.site-menu--footer .site-menu__link {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-md);
+  display: block;
+  padding: var(--space-xs) 0;
+  transition: opacity 0.3s ease;
+}
+
+.site-menu--footer .site-menu__link:hover {
+  opacity: 0.7;
+}
+
+.site-menu__sub-menu {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0;
+}
+
+.site-menu__sub-menu .site-menu__sub-menu__link {
+  color: var(--color-white);
+  opacity: 0.8;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: var(--text-sm);
+  display: block;
+  padding: var(--space-xxs) 0;
+  transition: opacity 0.3s ease;
+}
+
+.site-menu__sub-menu .site-menu__sub-menu__link:hover {
+  opacity: 1;
+}
+
+.site-menu__sub-menu .font-weight--600 {
+  font-weight: 600;
+}
+
+.site-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-lg) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .site-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.site-footer__copyright {
+  color: var(--color-white);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.site-menu--footer-util {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .site-menu--footer-util {
+    justify-content: flex-end;
+  }
+}
+
+.site-menu--footer-util .site-menu__link {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: opacity 0.3s ease;
+}
+
+.site-menu--footer-util .site-menu__link:hover {
+  opacity: 0.7;
+}
+
+.current-language {
+  color: var(--color-white);
+}
+
+.current-language p {
+  margin: 0;
+}
+
+.current-language a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: opacity 0.3s ease;
+}
+
+.current-language a:hover {
+  opacity: 0.7;
+}
+
+.current-language svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.margin-bottom--0 {
+  margin-bottom: 0;
+}

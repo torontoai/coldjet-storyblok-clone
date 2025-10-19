@@ -1,0 +1,6 @@
+# Serve images and static assets directly
+/images/*  /images/:splat  200
+/static/*  /static/:splat  200
+
+# SPA fallback - send all other requests to index.html
+/*  /index.html  200

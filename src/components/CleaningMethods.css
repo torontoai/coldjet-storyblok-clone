@@ -1,0 +1,82 @@
+/* Cleaning Methods Styles from original Cold Jet site */
+
+.section-background {
+  width: 100%;
+}
+
+.section-background.container--full-width {
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  overflow-x: auto;
+  margin: var(--space-md) 0;
+}
+
+.table__inner {
+  min-width: 600px;
+}
+
+.table__element {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-base);
+  overflow: hidden;
+}
+
+.table__header {
+  background-color: var(--color-primary-pale);
+}
+
+.table__header-row {
+  display: table-row;
+}
+
+.th, .td {
+  padding: var(--space-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.th {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.table__cell--left {
+  text-align: left;
+}
+
+.table__cell--center-x {
+  text-align: center;
+}
+
+.tr:last-child .td {
+  border-bottom: none;
+}
+
+.text--positive {
+  color: var(--color-success);
+}
+
+.text--neutral {
+  color: var(--color-contrast-medium);
+}
+
+.tbody .tr:nth-child(even) {
+  background-color: var(--color-primary-pale);
+}
+
+@media (max-width: 768px) {
+  .table__inner {
+    min-width: 100%;
+  }
+  
+  .th, .td {
+    padding: var(--space-xs);
+    font-size: var(--text-xs);
+  }
+}

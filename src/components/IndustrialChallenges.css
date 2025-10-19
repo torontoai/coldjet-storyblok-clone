@@ -1,0 +1,9 @@
+/* Industrial Challenges Styles - inline styles used in component */
+
+.industrial-challenges {
+  padding: var(--space-lg) 0;
+}
+
+.industrial-challenges .container {
+  max-width: var(--container-width-xl);
+}

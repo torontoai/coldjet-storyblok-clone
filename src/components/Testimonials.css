@@ -1,0 +1,150 @@
+/* Testimonials Styles from original Cold Jet site */
+
+.cards-slider {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cards-slider--testimonial {
+  background-color: var(--color-white);
+  padding: var(--space-xl) 0;
+}
+
+.cards-slider__shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.cards-slider__content {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.g-h-kicker {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: var(--text-base-size);
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.cards-slider__arrows {
+  margin-top: auto;
+}
+
+.cards-slider__slides-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.cards-slider__slides {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c-testimonial {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl);
+  min-width: 300px;
+  max-width: 600px;
+  margin: 0 auto;
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+
+.c-testimonial__logo {
+  margin-bottom: var(--space-md);
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-testimonial__logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.c-testimonial__quote {
+  font-family: var(--font-secondary);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+  color: var(--color-text);
+}
+
+.c-testimonial__quote p {
+  font-style: italic;
+  margin: 0;
+}
+
+.c-testimonial__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.c-testimonial__cite {
+  font-style: normal;
+}
+
+.c-testimonial__cite strong {
+  display: block;
+  margin-bottom: var(--space-xxxs);
+}
+
+.c-testimonial__link {
+  text-align: center;
+}
+
+.cards-slider__counter {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-primary-light);
+}
+
+.slider-counter__index,
+.slider-counter__total {
+  font-weight: 600;
+}
+
+.cards-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .cards-slider__slides {
+    justify-content: center;
+  }
+  
+  .c-testimonial {
+    min-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .c-testimonial {
+    max-width: 800px;
+    padding: var(--space-xxl);
+  }
+}

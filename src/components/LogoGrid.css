@@ -1,0 +1,72 @@
+/* Logo Grid Styles from original Cold Jet site */
+
+.logo-grid {
+  margin-top: var(--space-lg);
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: var(--space-xs);
+}
+
+.logo-grid__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logo-grid__grid--home {
+  padding: var(--space-md) 0;
+}
+
+.logo-grid__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.logo-grid__wrapper-home {
+  flex: 0 0 auto;
+  width: calc(20% - var(--space-md));
+  min-width: 100px;
+  max-width: 150px;
+}
+
+@media (max-width: 768px) {
+  .logo-grid__wrapper-home {
+    width: calc(33.333% - var(--space-md));
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-grid__wrapper-home {
+    width: calc(50% - var(--space-md));
+  }
+}
+
+.logo-grid__logo-image {
+  width: 100%;
+  height: auto;
+  max-width: 126px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.logo-grid__logo-image:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.lazyload {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazyload.loaded {
+  opacity: 1;
+}

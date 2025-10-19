@@ -1,0 +1,106 @@
+/* Industry Cards Styles from original Cold Jet site */
+
+.industries-section {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.grid--tight {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-card-image-link {
+  display: block;
+}
+
+.c-card-image-link__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.c-card-image-link__link:hover {
+  transform: translateY(-5px);
+}
+
+.c-card-image-link__img {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-base);
+  display: block;
+}
+
+.c-card-image-link__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.c-card-image-link__link:hover .c-card-image-link__img img {
+  transform: scale(1.05);
+}
+
+.img-bg {
+  position: relative;
+}
+
+.img-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-bg--dark-blue-gradient::before {
+  background-image: linear-gradient(-45deg, var(--color-primary-gradient-dark) 0%, var(--color-primary-gradient-light) 100%);
+}
+
+.c-card-image-link__link:hover .img-bg::before {
+  opacity: 0.4;
+}
+
+.c-card-image-link__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.c-card-image-link__link:hover .c-card-image-link__overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.c-card-image-link__title {
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+  padding: var(--space-sm);
+  text-align: center;
+  font-size: var(--text-md);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+@media (max-width: 768px) {
+  .c-card-image-link__title {
+    font-size: var(--text-sm);
+  }
+}

@@ -1,0 +1,30 @@
+/* Product Section Styles from original Cold Jet site */
+
+.product-section {
+  padding: var(--space-md) 0;
+}
+
+.product-section h5 {
+  font-size: 1.5rem;
+  font-family: var(--font-secondary);
+  color: var(--color-secondary);
+  margin: 0 0 9.504px;
+  line-height: 2;
+}
+
+.product-section h3 {
+  margin-bottom: var(--space-md);
+}
+
+.product-section p {
+  line-height: 1.6;
+}
+
+.wysiwyg-content.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-component {
+  line-height: var(--body-line-height);
+}

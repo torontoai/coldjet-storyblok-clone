@@ -1,0 +1,9 @@
+/* Customers Styles - inline styles used in component */
+
+.customers-section {
+  padding: var(--space-xxl) 0;
+}
+
+.customers-section .container {
+  max-width: var(--container-width-xl);
+}

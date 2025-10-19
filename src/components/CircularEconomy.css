@@ -1,0 +1,11 @@
+/* Circular Economy Styles - inline styles used in component, minimal CSS needed */
+
+.circular-economy {
+  position: relative;
+  width: 100%;
+}
+
+.circular-economy .container {
+  position: relative;
+  z-index: 2;
+}

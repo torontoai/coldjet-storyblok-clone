@@ -1,0 +1,80 @@
+/* Global Offices Styles from original Cold Jet site */
+
+.content-with-image {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.content-with-image--bleed {
+  overflow: hidden;
+}
+
+.content-with-image__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .content-with-image__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.content-with-image__img {
+  width: 100%;
+}
+
+.content-with-image__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content-with-image__text {
+  padding: var(--space-md);
+}
+
+.content-with-image__text-container {
+  max-width: 600px;
+}
+
+.g-h-kicker {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: var(--text-base-size);
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.g-link--chevron::after {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.25em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23084896' fill-rule='nonzero' d='m20.451 16.531-8.983 9.249a.724.724 0 0 1-1.04 0l-1.212-1.238a.76.76 0 0 1 0-1.062L16.467 16 9.216 8.52a.76.76 0 0 1 0-1.062l1.211-1.238a.724.724 0 0 1 1.04 0l8.984 9.249a.76.76 0 0 1 0 1.062'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1em;
+  vertical-align: middle;
+}
+
+.margin-bottom--xs {
+  margin-bottom: var(--space-xs);
+}
+
+.margin-bottom--md {
+  margin-bottom: var(--space-md);
+}
+
+.text-component {
+  line-height: var(--body-line-height);
+}
