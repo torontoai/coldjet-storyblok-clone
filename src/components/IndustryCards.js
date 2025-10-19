@@ -80,10 +80,11 @@ const IndustryCards = ({ blok = {} }) => {
                 <article className="c-card-image-link">
                   <a href={card.link} className="c-card-image-link__link">
                     <span
-                      className={`c-card-image-link__img img-bg ${card.overlay?.gradient === 'dark-blue' ? 'img-bg--dark-blue-gradient' : card.overlay?.gradient === 'light' ? 'img-bg--light-gradient' : ''}`}
+                      className={`c-card-image-link__img img-bg ${card.overlay?.gradient === 'dark-blue' ? 'img-bg--dark-blue-gradient' : card.overlay?.gradient === 'light' ? 'img-bg--light-gradient' : ''} industry-card-hover`}
                       style={{
                         fontWeight: card.overlay?.font_weight === 'bold' ? '600' : '400',
-                        fontFamily: 'Inter, "Avenir Next", sans-serif'
+                        fontFamily: 'Inter, "Avenir Next", sans-serif',
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                       }}
                     >
                       <img loading="lazy" src={card.background_image.filename} alt={card.title} />

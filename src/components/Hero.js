@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Hero = ({ blok = {} }) => {
   const {
@@ -15,8 +15,27 @@ const Hero = ({ blok = {} }) => {
   const fontWeight = global_style.fonts?.weight === 'bold' ? '600' : global_style.fonts?.weight === 'heavy' ? '700' : '400';
   const bottomMargin = global_style.spacing?.bottom_margin || 20; // Default 20px
 
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (hero) {
+      hero.style.opacity = '0';
+      hero.style.transform = 'translateY(20px)';
+      hero.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+
+      const timer = setTimeout(() => {
+        hero.style.opacity = '1';
+        hero.style.transform = 'translateY(0)';
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       className="hero-section container-full-width"
       style={{
         position: 'relative',

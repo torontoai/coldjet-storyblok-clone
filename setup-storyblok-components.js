@@ -114,14 +114,15 @@ const componentSchemas = [
         default_value: 'Leading the way in sustainable cleaning'
       },
       description: {
-        type: 'textarea',
+        type: 'richtext',
         pos: 3,
         description: 'Description paragraph'
       },
-      video_url: {
-        type: 'text',
+      video: {
+        type: 'asset',
         pos: 4,
-        description: 'Background video URL',
+        description: 'Background video',
+        filetypes: ['video'],
         default_value: 'https://www.coldjet.com/wp-content/uploads/Home_page_banner_video__compressed_v2.mp4'
       },
       background_image: {
@@ -211,6 +212,35 @@ const componentSchemas = [
         pos: 0,
         restrict_components: true,
         component_whitelist: ['industryCard']
+      },
+      overlay: {
+        type: 'group',
+        pos: 1,
+        name: 'overlay',
+        label: 'Overlay Styles',
+        fields: {
+          gradient: {
+            type: 'option',
+            pos: 0,
+            label: 'Gradient',
+            default_value: 'dark-blue',
+            options: [
+              { name: 'Dark Blue', value: 'dark-blue' },
+              { name: 'Light', value: 'light' },
+              { name: 'None', value: 'none' }
+            ]
+          },
+          font_weight: {
+            type: 'option',
+            pos: 1,
+            label: 'Font Weight',
+            default_value: 'bold',
+            options: [
+              { name: 'Normal (400)', value: 'normal' },
+              { name: 'Bold (600)', value: 'bold' }
+            ]
+          }
+        }
       }
     }
   },
@@ -434,6 +464,17 @@ const componentSchemas = [
         pos: 4,
         restrict_components: true,
         component_whitelist: ['menuColumn']
+      },
+      language: {
+        type: 'option',
+        pos: 7,
+        label: 'Language',
+        default_value: 'en',
+        options: [
+          { name: 'English', value: 'en' },
+          { name: 'Français', value: 'fr' },
+          { name: 'Deutsch', value: 'de' }
+        ]
       },
       copyright: {
         type: 'text',

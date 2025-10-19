@@ -26,6 +26,18 @@ All components have been created in Storyblok with proper field definitions:
 - **menuColumn** - Footer menu column
 - **link** - Generic link component
 
+#### Detailed Schema Updates
+- **Hero Schema**:
+  - Uses **RichText** fields for flexible headline, subheadline, and description (supports bold, italic, links).
+  - Fields: `headline` (RichText), `subheadline` (RichText), `description` (RichText), `video_url` (Asset/Video), `background_image` (Asset/Image).
+  - Benefits: Allows inline formatting without custom parsing.
+
+- **Footer Schema**:
+  - Uses **Datasource** for predefined links (e.g., legal pages, social platforms) to ensure consistency.
+  - Uses **Blocks** for nested menu structures (e.g., columns with sub-items).
+  - Fields: `columns` (Blocks of `menuColumn`), `social_links` (Datasource multi-select), `copyright` (RichText), `logo` (Asset/Image).
+  - Benefits: Dynamic nesting for complex footers; datasource prevents invalid URLs.
+
 ### 2. React Integration
 All React components now:
 - Accept data from Storyblok via the `blok` prop
@@ -51,9 +63,9 @@ All React components now:
 
 #### Hero Section
 Fields you can edit:
-- **Headline**: Main white headline text
-- **Subheadline**: Green accent headline
-- **Description**: Paragraph text
+- **Headline**: Main white headline text (RichText for formatting)
+- **Subheadline**: Green accent headline (RichText)
+- **Description**: Paragraph text (RichText)
 - **Video URL**: Background video (MP4 format)
 - **Background Image**: Fallback image if video doesn't load
 
@@ -98,6 +110,55 @@ Customer testimonial carousel:
   - Author: Person's name
   - Company: Company name and title
   - Image: Company/person logo (optional)
+
+### Content Migration Steps
+To migrate or update content from static to dynamic:
+
+1. **Prepare Data**:
+   - Export original content (e.g., copy text from clone components).
+   - Organize assets: Upload images/videos to Storyblok Asset Library.
+
+2. **Run Setup Script** (One-time):
+   ```
+   cd coldjet-storyblok-clone
+   node setup-storyblok-components.js
+   ```
+   - Creates all schemas if not present.
+
+3. **Populate 'home' Story**:
+   ```
+   node populate-with-schemas.js
+   ```
+   - Imports content into the 'home' story as draft.
+   - Maps static props to fields (e.g., hero headline to RichText).
+
+4. **Manual Review and Edit**:
+   - Open 'home' story in Storyblok.
+   - Verify RichText rendering (e.g., bold in hero).
+   - Adjust Footer blocks/datasources for nested menus.
+
+5. **Asset Migration**:
+   - See "Asset Organization" section below.
+   - Update image fields to use Storyblok URLs.
+
+6. **Test and Publish**:
+   - Preview changes.
+   - Publish (mind 3/day limit).
+
+**Reference**: See [REFINEMENT-PLAN.md](REFINEMENT-PLAN.md) for Phase 2 migration details.
+
+### Asset Organization
+Assets are structured for easy management:
+
+- **/equipment/**: Product images (e.g., dry-ice-blasting.jpg) – Upload here for equipmentGrid items.
+- **/industry/**: Background images for industry cards (e.g., aerospace-bg.png).
+- **/assets/**: SVGs/icons (e.g., social-icons.svg, logos/) – Used in footer/logoGrid.
+
+**Best Practices**:
+- Upload to Storyblok Asset Library for CDN optimization.
+- Name files descriptively (kebab-case).
+- Add alt text/metadata during upload.
+- For external assets (coldjet.com), reference URLs; prefer internal for performance.
 
 ### Publishing Changes
 
@@ -234,6 +295,10 @@ All CSS remains in component `.css` files:
 - Verify CORS if using external images
 - Consider uploading to Storyblok Asset Library
 
+**RichText/Blocks Issues:**
+- Ensure nested blocks are properly configured in schema.
+- Test formatting in Visual Editor.
+
 ## 📞 Support Resources
 
 - **Storyblok Docs**: https://www.storyblok.com/docs
@@ -253,7 +318,12 @@ Consider implementing:
 
 ---
 
-**Last Updated**: 2025-10-06  
+**Last Updated**: 2025-10-19  
 **Space ID**: 324703  
 **Site URL**: https://coldjet-storyblok-clone.netlify.app/  
 **Storyblok Story**: https://app.storyblok.com/#/me/spaces/324703/stories/0/0/621399566
+
+**References**:
+- [REFINEMENT-PLAN.md](REFINEMENT-PLAN.md) for phase details
+- [COMPARISON-GUIDE.md](COMPARISON-GUIDE.md) for fidelity verification
+- [USER-GUIDE.md](USER-GUIDE.md) for end-user instructions

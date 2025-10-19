@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { storyblokInit, apiPlugin, StoryblokComponent } from '@storyblok/react';
 import Header from './components/Header';
 import Banner from './components/Banner';
@@ -156,19 +157,33 @@ const App = () => {
     );
   };
 
+  const pageTitle = story?.content?.title || 'Cold Jet: Leading Dry Ice Solutions Manufacturer';
+  const pageDescription = story?.content?.description || 'Driving Sustainable Innovation in Industrial Applications';
+
   return (
-    <div className="App">
-      <div className="site-wrapper">
-        <Header />
-        <Banner />
-        
-        <main id="content" className="site-content" role="main">
-          {renderContent()}
-        </main>
-        
-        <Footer />
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.coldjet.com/" />
+      </Helmet>
+      <div className="App">
+        <div className="site-wrapper">
+          <Header />
+          <Banner />
+          
+          <main id="content" className="site-content" role="main">
+            {renderContent()}
+          </main>
+          
+          <Footer />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
