@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const SPACE_ID = '324703';
-const MANAGEMENT_TOKEN = 'eDnw7ANwiuU17rUOqZL8Jgtt-256880-tzX65gQafwdWTum-cUL3'; // Use the PAT from setup script
+const MANAGEMENT_TOKEN = process.env.STORYBLOK_MANAGEMENT_TOKEN; // Load from environment variable
 const STORY_SLUG = 'home';
 
 const API_BASE = `https://mapi.storyblok.com/v1/spaces/${SPACE_ID}`;
