@@ -1,6 +1,6 @@
 import { storyblokInit, apiPlugin } from '@storyblok/js';
 
-const apiToken = process.env.REACT_APP_STORYBLOK_TOKEN;
+const apiToken = process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN;
 
 if (!apiToken) {
   console.error('REACT_APP_STORYBLOK_TOKEN environment variable is not set');

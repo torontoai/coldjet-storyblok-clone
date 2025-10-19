@@ -20,7 +20,8 @@ import './App.css';
 
 // Initialize Storyblok
 storyblokInit({
-  accessToken: process.env.REACT_APP_STORYBLOK_TOKEN,
+  accessToken: process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN,
+  bridge: true,
   use: [apiPlugin],
   components: {
     page: ({ blok }) => <div>{blok.body?.map((nestedBlok) => <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />)}</div>,
@@ -43,7 +44,7 @@ const App = () => {
     const fetchStory = async () => {
       try {
         const response = await fetch(
-          `https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${process.env.REACT_APP_STORYBLOK_TOKEN}&cv=${Date.now()}`
+          `https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN}&cv=${Date.now()}`
         );
         
         if (!response.ok) {
