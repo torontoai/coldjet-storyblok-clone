@@ -26,14 +26,14 @@
 }
 
 .product-equipment-grid__item--2 {
-  flex: 0 0 100%;
-  max-width: 100%;
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .product-equipment-grid__item--2 {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
   }
 }
 

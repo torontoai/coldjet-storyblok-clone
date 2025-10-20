@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { storyblokInit, apiPlugin, StoryblokComponent } from '@storyblok/react';
+import { storyblokInit, apiPlugin } from '@storyblok/react';
 import { getStoryContent } from './lib/storyblok';
 import Header from './components/Header';
 import Banner from './components/Banner';
@@ -20,60 +20,35 @@ import GlobalOffices from './components/GlobalOffices';
 import Footer from './components/Footer';
 import './App.css';
 
-// Initialize Storyblok
+// Initialize Storyblok with bridge for Visual Editor
 storyblokInit({
   accessToken: process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN,
-  bridge: true, // Enable bridge for Visual Editor
+  bridge: true,
   use: [apiPlugin],
-  components: {
-    page: ({ blok }) => <div>{blok.body?.map((nestedBlok) => <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />)}</div>,
-    hero: Hero,
-    equipmentGrid: EquipmentGrid,
-    industryCards: IndustryCards,
-    onSiteProduction: OnSiteProduction,
-    testimonials: Testimonials,
-    logoGrid: LogoGrid,
-    footer: Footer,
-  },
-  apiOptions: {
-    region: 'us', // Verify this matches your Storyblok space region
-  },
 });
+
+// Component mapping for Storyblok blocks
+const ComponentMap = {
+  hero: Hero,
+  equipmentGrid: EquipmentGrid,
+  industryCards: IndustryCards,
+  circularEconomy: CircularEconomy,
+  industrialChallenges: IndustrialChallenges,
+  cleaningMethods: CleaningMethods,
+  onSiteProduction: OnSiteProduction,
+  coldChain: ColdChain,
+  customers: Customers,
+  logoGrid: LogoGrid,
+  testimonials: Testimonials,
+  globalOffices: GlobalOffices,
+  footer: Footer,
+};
 
 const App = () => {
   const [story, setStory] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const currentSlugRef = useRef('home');
-  const isMountedRef = useRef(true);
-
-  const fetchStory = async (slug) => {
-    if (!isMountedRef.current) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const fetchedStory = await getStoryContent(slug);
-      if (isMountedRef.current) {
-        setStory(fetchedStory);
-        if (!fetchedStory) {
-          setError(`Failed to load story for slug: ${slug}`);
-        }
-      }
-    } catch (err) {
-      if (isMountedRef.current) {
-        console.error('Fetch error:', err);
-        setError('Error loading story');
-      }
-    } finally {
-      if (isMountedRef.current) {
-        setLoading(false);
-      }
-    }
-  };
 
   useEffect(() => {
-    isMountedRef.current = true;
-    
     // Extract slug from current URL path
     let slug = 'home';
     const path = window.location.pathname;
@@ -84,51 +59,31 @@ const App = () => {
       if (!slug) slug = 'home';
     }
 
-    currentSlugRef.current = slug;
     console.log(`Loading story for slug: ${slug} from path: ${path}`);
-    fetchStory(slug);
-
-    // Storyblok bridge for live preview updates - with safety checks
-    let handleChange = null;
     
-    const initBridge = () => {
-      if (window.storyblok && typeof window.storyblok.on === 'function') {
-        handleChange = (event) => {
-          if (!isMountedRef.current) return;
-          try {
-            console.log('Storyblok bridge change detected:', event);
-            const slugToLoad = event.story ? event.story.slug : currentSlugRef.current;
-            fetchStory(slugToLoad);
-          } catch (err) {
-            console.error('Bridge callback error:', err);
+    const loadStory = () => {
+      getStoryContent(slug)
+        .then((fetchedStory) => {
+          setStory(fetchedStory);
+          if (!fetchedStory) {
+            console.log(`Story not found for slug: ${slug}, using fallback`);
           }
-        };
-        window.storyblok.on('change', handleChange);
-        window.storyblok.on('published', handleChange);
-        window.storyblok.on('unpublished', handleChange);
-        console.log('Storyblok bridge initialized successfully');
-      } else {
-        // Retry if bridge not ready (max 10 attempts = 2 seconds)
-        if ((window.bridgeRetries || 0) < 10) {
-          window.bridgeRetries = (window.bridgeRetries || 0) + 1;
-          setTimeout(initBridge, 200);
-        } else {
-          console.warn('Storyblok bridge failed to initialize after retries');
-        }
-      }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error('Fetch error:', err);
+          setLoading(false);
+        });
     };
     
-    initBridge();
-
-    return () => {
-      isMountedRef.current = false;
-      if (handleChange && window.storyblok && typeof window.storyblok.off === 'function') {
-        window.storyblok.off('change', handleChange);
-        window.storyblok.off('published', handleChange);
-        window.storyblok.off('unpublished', handleChange);
-        console.log('Storyblok bridge listeners removed');
-      }
-    };
+    loadStory();
+    
+    // Storyblok bridge for Visual Editor live updates
+    if (window.storyblok) {
+      window.storyblok.on(['input', 'published', 'change'], () => {
+        loadStory();
+      });
+    }
   }, []);
 
   if (loading) {
@@ -142,9 +97,14 @@ const App = () => {
   // Render with Storyblok content if available, otherwise use defaults
   const renderContent = () => {
     if (story && story.content && story.content.body) {
-      return story.content.body.map((blok) => (
-        <StoryblokComponent blok={blok} key={blok._uid} />
-      ));
+      return story.content.body.map((blok) => {
+        const Component = ComponentMap[blok.component];
+        if (Component) {
+          return <Component key={blok._uid} blok={blok} />;
+        }
+        console.warn(`Component not found for: ${blok.component}`);
+        return null;
+      });
     }
 
     console.log('Using fallback content');
@@ -162,6 +122,7 @@ const App = () => {
           </p>
         </section>
         
+        <WhyChoose />
         <CircularEconomy />
         <IndustrialChallenges />
         <IndustryCards />

@@ -39,7 +39,7 @@ const Hero = ({ blok = {} }) => {
       className="hero-section container-full-width"
       style={{
         position: 'relative',
-        height: '100vh',
+        height: '500px',
         overflow: 'hidden',
         marginBottom: `${bottomMargin}px`
       }}

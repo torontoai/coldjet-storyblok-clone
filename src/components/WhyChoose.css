@@ -1,0 +1,72 @@
+/* Why Choose Cold Jet Section */
+
+.why-choose-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.why-choose-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.why-choose-kicker {
+  font-family: "Avenir Next Condensed", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #aed049;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.why-choose-title {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.why-choose-description {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 1.125rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.why-choose-feature {
+  margin-top: 24px;
+}
+
+.why-choose-feature-text {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 1.125rem;
+  color: #003366;
+  margin-bottom: 12px;
+}
+
+.why-choose-feature-description {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .why-choose-section {
+    padding: 40px 0;
+  }
+  
+  .why-choose-title {
+    font-size: 2rem;
+  }
+  
+  .why-choose-description {
+    font-size: 1rem;
+  }
+}

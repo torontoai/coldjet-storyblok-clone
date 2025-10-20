@@ -1,24 +1,26 @@
-import { storyblokInit, apiPlugin } from '@storyblok/js';
-
 const apiToken = process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN;
 
 if (!apiToken) {
-  console.error('REACT_APP_STORYBLOK_TOKEN environment variable is not set');
+  console.error('REACT_APP_STORYBLOK_PREVIEW_TOKEN environment variable is not set');
 }
 
-const { storyblokApi } = storyblokInit({
-  accessToken: apiToken,
-  use: [apiPlugin],
-});
-
-export const storyblok = storyblokApi;
-
 export const getStoryContent = async (slug = 'home') => {
+  if (!apiToken) {
+    console.error('No API token available');
+    return null;
+  }
+  
   try {
-    const { data } = await storyblok.get(`cdn/stories/${slug}`, {
-      version: 'draft',
-      cv: Date.now(), // Cache busting for live updates
-    });
+    const response = await fetch(
+      `https://api.storyblok.com/v2/cdn/stories/${slug}?version=draft&token=${apiToken}&cv=${Date.now()}`
+    );
+    
+    if (!response.ok) {
+      console.error(`Storyblok API error: ${response.status}`);
+      return null;
+    }
+    
+    const data = await response.json();
     return data.story;
   } catch (error) {
     console.error(`Error fetching story for slug '${slug}':`, error);

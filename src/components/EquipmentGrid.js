@@ -31,11 +31,14 @@ const EquipmentGrid = ({ blok = {} }) => {
           className="product-equipment-grid__grid row gx-4 product-equipment-grid__grid--inner-borders align-center"
           style={{
             '--bs-gap': `${blok.spacing || 20}px`,
-            gap: 'var(--bs-gap)'
+            gap: 'var(--bs-gap)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
           }}
         >
           {displayItems.map((item, index) => (
-            <li key={index} className="product-equipment-grid__item product-equipment-grid__item--2">
+            <li key={index} className="product-equipment-grid__item product-equipment-grid__item--2 col-12 col-md-6" style={{flex: '0 0 48%', maxWidth: '48%'}}>
               {item.image && (
                 <figure className="c-product">
                   <div className="c-product__img">

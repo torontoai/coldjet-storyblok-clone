@@ -74,9 +74,11 @@ const IndustryCards = ({ blok = {} }) => {
     <section className="industries-section">
       <div className="container container-xxl align-center margin-top--md margin-bottom--md padding-top--md padding-bottom--md">
         <ul className="row gx-3 gy-3 grid--tight" style={{gap: (blok.spacing || 16) + 'px'}}>
-          {displayCards.map((card, index) => (
-            <li key={index} className="col-6 col-md-3">
-              {card.background_image && (
+          {displayCards.map((card, index) => {
+            const imageUrl = card.background_image?.filename || card.image?.filename;
+            return (
+            <li key={index} className="col-6 col-lg-3">
+              {imageUrl && (
                 <article className="c-card-image-link">
                   <a href={card.link} className="c-card-image-link__link">
                     <span
@@ -87,7 +89,7 @@ const IndustryCards = ({ blok = {} }) => {
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                       }}
                     >
-                      <img loading="lazy" src={card.background_image.filename} alt={card.alt_text || card.title} />
+                      <img loading="lazy" src={imageUrl} alt={card.alt_text || card.title} />
                       <span className="c-card-image-link__overlay" style={{backgroundColor: 'rgba(0,0,0,0.4)'}}>
                         <p className="c-card-image-link__title" style={{fontFamily: 'Inter, "Avenir Next", sans-serif', fontWeight: 600}}>{card.title}</p>
                       </span>
@@ -96,7 +98,8 @@ const IndustryCards = ({ blok = {} }) => {
                 </article>
               )}
             </li>
-          ))}
+            );
+          })}
         </ul>
       </div>
     </section>

@@ -78,11 +78,11 @@ const OnSiteProduction = ({ blok = {} }) => {
       <section className="container container-xxl align-center margin-top--md margin-bottom--md padding-top--md padding-bottom--md">
         <ul className="row gx-2 gy-2 gx-md-3 gy-md-3 grid--tight">
           {displayCards.map((card, index) => (
-            <li key={index} className="col-6 col-md-3">
+            <li key={index} className="col-6 col-lg-3">
               <article className="c-card-image-link">
                 <a href={card.link} className="c-card-image-link__link">
                   <span className="c-card-image-link__img img-bg img-bg--dark-blue-gradient">
-                    <img loading="lazy" src={card.image?.filename || card.image} alt={card.title} />
+                    <img loading="lazy" src={card.image?.filename || card.image} alt={card.alt_text || card.title} />
                     <span className="c-card-image-link__overlay">
                       <p className="c-card-image-link__title">{card.title}</p>
                     </span>
