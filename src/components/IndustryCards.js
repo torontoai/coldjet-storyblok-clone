@@ -87,7 +87,7 @@ const IndustryCards = ({ blok = {} }) => {
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                       }}
                     >
-                      <img loading="lazy" src={card.background_image.filename} alt={card.title} />
+                      <img loading="lazy" src={card.background_image.filename} alt={card.alt_text || card.title} />
                       <span className="c-card-image-link__overlay" style={{backgroundColor: 'rgba(0,0,0,0.4)'}}>
                         <p className="c-card-image-link__title" style={{fontFamily: 'Inter, "Avenir Next", sans-serif', fontWeight: 600}}>{card.title}</p>
                       </span>

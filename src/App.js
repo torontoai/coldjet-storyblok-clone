@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { storyblokInit, apiPlugin, StoryblokComponent } from '@storyblok/react';
+import { getStoryContent } from './lib/storyblok';
 import Header from './components/Header';
 import Banner from './components/Banner';
 import Hero from './components/Hero';
@@ -22,7 +23,7 @@ import './App.css';
 // Initialize Storyblok
 storyblokInit({
   accessToken: process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN,
-  bridge: true,
+  bridge: true, // Enable bridge for Visual Editor
   use: [apiPlugin],
   components: {
     page: ({ blok }) => <div>{blok.body?.map((nestedBlok) => <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />)}</div>,
@@ -34,36 +35,100 @@ storyblokInit({
     logoGrid: LogoGrid,
     footer: Footer,
   },
+  apiOptions: {
+    region: 'us', // Verify this matches your Storyblok space region
+  },
 });
 
 const App = () => {
   const [story, setStory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const currentSlugRef = useRef('home');
+  const isMountedRef = useRef(true);
 
-  useEffect(() => {
-    const fetchStory = async () => {
-      try {
-        const response = await fetch(
-          `https://api.storyblok.com/v2/cdn/stories/home?version=draft&token=${process.env.REACT_APP_STORYBLOK_PREVIEW_TOKEN}&cv=${Date.now()}`
-        );
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+  const fetchStory = async (slug) => {
+    if (!isMountedRef.current) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const fetchedStory = await getStoryContent(slug);
+      if (isMountedRef.current) {
+        setStory(fetchedStory);
+        if (!fetchedStory) {
+          setError(`Failed to load story for slug: ${slug}`);
         }
-        
-        const data = await response.json();
-        console.log('Storyblok story loaded:', data.story);
-        setStory(data.story);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching story:', err);
-        setError(err.message);
+      }
+    } catch (err) {
+      if (isMountedRef.current) {
+        console.error('Fetch error:', err);
+        setError('Error loading story');
+      }
+    } finally {
+      if (isMountedRef.current) {
         setLoading(false);
       }
-    };
+    }
+  };
 
-    fetchStory();
+  useEffect(() => {
+    isMountedRef.current = true;
+    
+    // Extract slug from current URL path
+    let slug = 'home';
+    const path = window.location.pathname;
+    if (path === '/' || path === '') {
+      slug = 'home';
+    } else {
+      slug = path.replace(/^\/+|\/+$/g, '');
+      if (!slug) slug = 'home';
+    }
+
+    currentSlugRef.current = slug;
+    console.log(`Loading story for slug: ${slug} from path: ${path}`);
+    fetchStory(slug);
+
+    // Storyblok bridge for live preview updates - with safety checks
+    let handleChange = null;
+    
+    const initBridge = () => {
+      if (window.storyblok && typeof window.storyblok.on === 'function') {
+        handleChange = (event) => {
+          if (!isMountedRef.current) return;
+          try {
+            console.log('Storyblok bridge change detected:', event);
+            const slugToLoad = event.story ? event.story.slug : currentSlugRef.current;
+            fetchStory(slugToLoad);
+          } catch (err) {
+            console.error('Bridge callback error:', err);
+          }
+        };
+        window.storyblok.on('change', handleChange);
+        window.storyblok.on('published', handleChange);
+        window.storyblok.on('unpublished', handleChange);
+        console.log('Storyblok bridge initialized successfully');
+      } else {
+        // Retry if bridge not ready (max 10 attempts = 2 seconds)
+        if ((window.bridgeRetries || 0) < 10) {
+          window.bridgeRetries = (window.bridgeRetries || 0) + 1;
+          setTimeout(initBridge, 200);
+        } else {
+          console.warn('Storyblok bridge failed to initialize after retries');
+        }
+      }
+    };
+    
+    initBridge();
+
+    return () => {
+      isMountedRef.current = false;
+      if (handleChange && window.storyblok && typeof window.storyblok.off === 'function') {
+        window.storyblok.off('change', handleChange);
+        window.storyblok.off('published', handleChange);
+        window.storyblok.off('unpublished', handleChange);
+        console.log('Storyblok bridge listeners removed');
+      }
+    };
   }, []);
 
   if (loading) {
@@ -74,19 +139,15 @@ const App = () => {
     );
   }
 
-  if (error) {
-    console.error('Rendering with error, falling back to default content');
-  }
-
   // Render with Storyblok content if available, otherwise use defaults
   const renderContent = () => {
-    if (story?.content?.body) {
+    if (story && story.content && story.content.body) {
       return story.content.body.map((blok) => (
         <StoryblokComponent blok={blok} key={blok._uid} />
       ));
     }
 
-    // Fallback to hardcoded content if Storyblok data not available
+    console.log('Using fallback content');
     return (
       <>
         <Hero />

@@ -13,14 +13,15 @@ const { storyblokApi } = storyblokInit({
 
 export const storyblok = storyblokApi;
 
-export const getHomepageContent = async () => {
+export const getStoryContent = async (slug = 'home') => {
   try {
-    const { data } = await storyblok.get('cdn/stories/home', {
+    const { data } = await storyblok.get(`cdn/stories/${slug}`, {
       version: 'draft',
+      cv: Date.now(), // Cache busting for live updates
     });
     return data.story;
   } catch (error) {
-    console.error('Error fetching homepage:', error);
+    console.error(`Error fetching story for slug '${slug}':`, error);
     return null;
   }
 };
