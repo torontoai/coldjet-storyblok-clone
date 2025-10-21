@@ -1,0 +1,136 @@
+/* Why Choose Dry Ice Blasting Section */
+
+.why-choose-blasting {
+  background: linear-gradient(135deg, #002855 0%, #003d7a 100%);
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+.why-choose-blasting__header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-choose-blasting__kicker {
+  font-family: "Avenir Next Condensed", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #aed049;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.why-choose-blasting__title {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.why-choose-blasting__description {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.comparison-table {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.comparison-table thead {
+  background: #003366;
+}
+
+.comparison-table th {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th:last-child {
+  border-right: none;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comparison-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.comparison-table td {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 0.9375rem;
+  color: #333;
+  padding: 24px 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  font-weight: 700;
+  color: #003366;
+}
+
+.comparison-table .check-mark {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .why-choose-blasting {
+    padding: 60px 0;
+  }
+  
+  .why-choose-blasting__title {
+    font-size: 2rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    font-size: 0.875rem;
+    padding: 16px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-blasting__title {
+    font-size: 1.75rem;
+  }
+  
+  .why-choose-blasting__description {
+    font-size: 1rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    font-size: 0.8125rem;
+    padding: 12px 8px;
+  }
+}

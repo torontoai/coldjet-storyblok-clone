@@ -38,7 +38,7 @@ const EquipmentGrid = ({ blok = {} }) => {
           }}
         >
           {displayItems.map((item, index) => (
-            <li key={index} className="product-equipment-grid__item product-equipment-grid__item--2 col-12 col-md-6" style={{flex: '0 0 48%', maxWidth: '48%'}}>
+            <li key={index} className="product-equipment-grid__item product-equipment-grid__item--2">
               {item.image && (
                 <figure className="c-product">
                   <div className="c-product__img">

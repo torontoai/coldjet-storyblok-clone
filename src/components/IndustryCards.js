@@ -73,11 +73,11 @@ const IndustryCards = ({ blok = {} }) => {
   return (
     <section className="industries-section">
       <div className="container container-xxl align-center margin-top--md margin-bottom--md padding-top--md padding-bottom--md">
-        <ul className="row gx-3 gy-3 grid--tight" style={{gap: (blok.spacing || 16) + 'px'}}>
+        <ul className="grid--tight">
           {displayCards.map((card, index) => {
             const imageUrl = card.background_image?.filename || card.image?.filename;
             return (
-            <li key={index} className="col-6 col-lg-3">
+            <li key={index}>
               {imageUrl && (
                 <article className="c-card-image-link">
                   <a href={card.link} className="c-card-image-link__link">

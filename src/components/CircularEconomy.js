@@ -1,24 +1,35 @@
 import React from 'react';
 import './CircularEconomy.css';
 
-const CircularEconomy = ({ blok }) => {
+const CircularEconomy = ({ blok = {} }) => {
+  const {
+    kicker = 'Driving a Circular Economy with Recycled CO2',
+    title = 'Cold Jet: Pioneering Sustainable Dry Ice Solutions with Recycled CO2',
+    description = 'As a leading provider of dry ice solutions, we are committed to a circular economy. We utilize recycled CO2 to create powerful and sustainable dry ice solutions, minimizing waste and maximizing resource efficiency for businesses across industries.',
+    background_image,
+    cta_text = 'Learn More About Sustainable Dry Ice',
+    cta_url = 'https://www.coldjet.com/sustainability/'
+  } = blok;
+  
+  const backgroundImageUrl = background_image?.filename || '';
+  
   return (
     <section className="wysiwyg-content container text-component margin-top--lg margin-bottom--none padding-top--sm padding-bottom--sm container--full-width">
       <div style={{ position: 'relative', width: '100%', padding: '100px 0' }}>
-        <img 
-          decoding="async" 
-          loading="lazy" 
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover', 
-            position: 'absolute', 
-            top: 0, 
-            left: 0, 
-            zIndex: -1 
-          }} 
-          src="https://cdn.bfldr.com/YCAINI82/at/s3tjthg5k43qswckxgppb9tz/Carbon_Dioxide_-_ESG.jpg?format=webp&width=1200" 
-          alt="Cold Jet: Utilizing Recycled CO2 for Sustainable Dry Ice Production" 
+        <img
+          decoding="async"
+          loading="lazy"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: -1
+          }}
+          src={backgroundImageUrl}
+          alt={background_image?.alt || 'Circular economy background'}
         />
         <div className="container">
           <div className="row">
@@ -31,40 +42,42 @@ const CircularEconomy = ({ blok }) => {
                 background: 'rgba(0,0,0,0.5)', 
                 borderRadius: '5px' 
               }}>
-                <h5 style={{ 
-                  fontSize: '1.5rem', 
-                  fontFamily: '"Avenir Next Condensed", sans-serif', 
-                  color: '#aed049', 
-                  margin: '0 0 9.504px', 
-                  lineHeight: '2' 
+                <h5 style={{
+                  fontSize: '1.5rem',
+                  fontFamily: '"Avenir Next Condensed", sans-serif',
+                  color: '#aed049',
+                  margin: '0 0 9.504px',
+                  lineHeight: '2'
                 }}>
-                  <strong>Driving a Circular Economy with Recycled CO2</strong>
+                  <strong>{kicker}</strong>
                 </h5>
                 <h4 className="text--xxl" style={{ fontWeight: 'bold', color: 'white' }}>
-                  Cold Jet: Pioneering Sustainable Dry Ice Solutions with Recycled CO2
+                  {title}
                 </h4>
                 <p className="text--md balance-text" style={{ fontSize: '18px', marginTop: '20px' }}>
-                  As a leading provider of dry ice solutions, we are committed to a circular economy. We utilize recycled CO2 to create powerful and sustainable dry ice solutions, minimizing waste and maximizing resource efficiency for businesses across industries.
+                  {description}
                 </p>
-                <p>
-                  <a 
-                    style={{ 
-                      display: 'inline-block', 
-                      padding: '10px 20px', 
-                      backgroundColor: '#aed049', 
-                      color: 'white', 
-                      fontWeight: 'bold', 
-                      borderRadius: '5px', 
-                      marginTop: '20px',
-                      textDecoration: 'none'
-                    }} 
-                    href="https://www.coldjet.com/sustainability/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Learn More About Sustainable Dry Ice
-                  </a>
-                </p>
+                {cta_text && cta_url && (
+                  <p>
+                    <a
+                      style={{
+                        display: 'inline-block',
+                        padding: '10px 20px',
+                        backgroundColor: '#aed049',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        borderRadius: '5px',
+                        marginTop: '20px',
+                        textDecoration: 'none'
+                      }}
+                      href={cta_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {cta_text}
+                    </a>
+                  </p>
+                )}
               </div>
             </div>
           </div>

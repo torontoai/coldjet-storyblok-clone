@@ -1,7 +1,16 @@
 import React from 'react';
 import './GlobalOffices.css';
 
-const GlobalOffices = ({ blok }) => {
+const GlobalOffices = ({ blok = {} }) => {
+  const {
+    kicker = 'Global Offices',
+    title = 'We are the global leader with a uniquely local presence',
+    description = 'Being responsive to our customer\'s needs is mission critical to our service team. With service centers around the globe, our technicians are always within reach.',
+    image = { filename: 'https://www.coldjet.com/wp-content/uploads/2019/06/global-offices-2-1-1.png' },
+    link_text = 'Find Cold Jet near you',
+    link_url = 'https://www.coldjet.com/global-offices/'
+  } = blok;
+  
   return (
     <section className="content-with-image margin-top--lg margin-bottom--lg padding-top--none padding-bottom--none bg-color--white content-with-image--bleed">
       <div className="container container-xxl">
@@ -9,9 +18,9 @@ const GlobalOffices = ({ blok }) => {
           <div className="content-with-image__img col-12 col-lg-6" style={{order: 2}}>
             <img
               loading="lazy"
-              src="https://www.coldjet.com/wp-content/uploads/2019/06/global-offices-2-1-1.png"
+              src={image?.filename || image}
               className="lazyload"
-              alt="Global Offices Map"
+              alt={image?.alt || 'Global Offices Map'}
               style={{maxWidth: '100%', height: 'auto'}}
             />
           </div>
@@ -27,7 +36,7 @@ const GlobalOffices = ({ blok }) => {
                 marginBottom: '16px',
                 fontWeight: '600'
               }}>
-                GLOBAL OFFICES
+                {kicker}
               </p>
               <h2 style={{
                 fontSize: '2rem',
@@ -37,7 +46,7 @@ const GlobalOffices = ({ blok }) => {
                 fontWeight: '700',
                 lineHeight: '1.2'
               }}>
-                We are the global leader with a uniquely local presence
+                {title}
               </h2>
               <p style={{
                 fontSize: '1.125rem',
@@ -46,12 +55,12 @@ const GlobalOffices = ({ blok }) => {
                 marginBottom: '24px',
                 lineHeight: '1.6'
               }}>
-                Being responsive to our customer's needs is mission critical to our service team. With service centers around the globe, our technicians are always within reach.
+                {description}
               </p>
               <p>
                 <a
                   className="g-link g-link--icon-text g-link--chevron"
-                  href="https://www.coldjet.com/global-offices/"
+                  href={link_url}
                   style={{
                     fontSize: '1rem',
                     fontFamily: '"Avenir Next", sans-serif',
@@ -60,7 +69,7 @@ const GlobalOffices = ({ blok }) => {
                     fontWeight: '600'
                   }}
                 >
-                  Find Cold Jet near you →
+                  {link_text} →
                 </a>
               </p>
             </div>

@@ -4,9 +4,9 @@ const Hero = ({ blok = {} }) => {
   const {
     headline = 'Cold Jet: Leading Dry Ice Solutions Manufacturer',
     subheadline = 'Driving Sustainable Innovation in Industrial Applications',
-    subtitle = 'Leading the way in sustainable cleaning',
     description = 'Experience the power of Cold Jet\'s innovative dry ice technology. Our eco-friendly solutions deliver superior cleaning results, enhance efficiency, and minimize environmental impact across a broad spectrum of industries. Cold Jet provides complete and sustainable solutions for your business. These include dry ice blasting equipment as well as dry ice production systems.',
     video_url = 'https://www.coldjet.com/wp-content/uploads/Home_page_banner_video__compressed_v2.mp4',
+    poster_image,
     background_image,
     global_style = {}
   } = blok;
@@ -114,17 +114,6 @@ const Hero = ({ blok = {} }) => {
               }}>
                 {subheadline}
               </h2>
-              <p style={{
-                fontSize: '1.2rem',
-                fontFamily: fontFamily,
-                textAlign: 'left',
-                color: 'white',
-                lineHeight: '1.5',
-                marginBottom: '1rem',
-                fontWeight: fontWeight
-              }}>
-                {subtitle}
-              </p>
               <p style={{
                 fontSize: '1rem',
                 fontFamily: fontFamily,

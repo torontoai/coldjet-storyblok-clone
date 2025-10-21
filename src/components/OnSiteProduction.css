@@ -35,7 +35,8 @@
 
 .c-card-image-link__img img {
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
 }

@@ -1,7 +1,13 @@
 import React from 'react';
 import './Customers.css';
 
-const Customers = ({ blok }) => {
+const Customers = ({ blok = {} }) => {
+  const {
+    kicker = 'OUR CUSTOMERS & WHAT THEY SAY ABOUT US',
+    title = 'Thousands of customers around the world rely on Cold Jet',
+    description = 'With a global install base of 15,000+ that consists of companies large and small – Cold Jet delivers real value.'
+  } = blok;
+  
   return (
     <section className="wysiwyg-content container text-component margin-top--xxl margin-bottom--none padding-top--none padding-bottom--none container--xl">
       <div style={{ position: 'relative', padding: '40px 20px', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
@@ -15,7 +21,7 @@ const Customers = ({ blok }) => {
           textTransform: 'uppercase',
           fontWeight: '600'
         }}>
-          OUR CUSTOMERS & WHAT THEY SAY ABOUT US
+          {kicker}
         </h5>
         <h2 style={{
           fontSize: '2.5rem',
@@ -25,8 +31,7 @@ const Customers = ({ blok }) => {
           margin: '0 0 24px',
           lineHeight: '1.2'
         }}>
-          Thousands of customers around<br />
-          the world rely on Cold Jet
+          {title}
         </h2>
         <p style={{
           fontSize: '1.125rem',
@@ -35,7 +40,7 @@ const Customers = ({ blok }) => {
           lineHeight: '1.6',
           margin: '0'
         }}>
-          With a global install base of <strong>15,000+</strong> that consists of companies large and small – <strong>Cold Jet delivers real value.</strong>
+          {description}
         </p>
       </div>
     </section>

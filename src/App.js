@@ -7,6 +7,9 @@ import Banner from './components/Banner';
 import Hero from './components/Hero';
 import ProductSection from './components/ProductSection';
 import EquipmentGrid from './components/EquipmentGrid';
+import WhyChoose from './components/WhyChoose';
+import ButtonSection from './components/ButtonSection';
+import WhyChooseBlasting from './components/WhyChooseBlasting';
 import CircularEconomy from './components/CircularEconomy';
 import IndustrialChallenges from './components/IndustrialChallenges';
 import IndustryCards from './components/IndustryCards';
@@ -30,7 +33,11 @@ storyblokInit({
 // Component mapping for Storyblok blocks
 const ComponentMap = {
   hero: Hero,
+  productSection: ProductSection,
   equipmentGrid: EquipmentGrid,
+  buttonSection: ButtonSection,
+  whyChoose: WhyChoose,
+  whyChooseBlasting: WhyChooseBlasting,
   industryCards: IndustryCards,
   circularEconomy: CircularEconomy,
   industrialChallenges: IndustrialChallenges,

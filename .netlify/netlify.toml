@@ -1,3 +1,4 @@
+redirectsOrigin = "config"
 plugins = []
 headers = []
 
@@ -6,12 +7,13 @@ headers = []
 [functions."*"]
 
 [build]
-publish = "C:\\Users\\dchud\\Desktop\\coldjet-storyblok-clone\\build"
-publishOrigin = "ui"
-commandOrigin = "ui"
+publish = "c:\\Users\\dchud\\Desktop\\coldjet-storyblok-clone\\build"
+publishOrigin = "config"
+commandOrigin = "config"
 command = "npm run build"
 
 [build.environment]
+NODE_VERSION = "18"
 
 [build.processing]
 

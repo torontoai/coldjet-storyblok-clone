@@ -3,7 +3,9 @@ import './OnSiteProduction.css';
 
 const OnSiteProduction = ({ blok = {} }) => {
   const {
-    title = 'Gaining Control: The Advantages of On-Site Dry Ice Production',
+    kicker = 'Gaining Control: The Advantages of On-Site Dry Ice Production',
+    title = 'Cold Jet: Your Partner for Efficient On-Site Dry Ice Production',
+    description = 'Experience the benefits of on-site dry ice production with a leading dry ice solutions provider. Gain greater control over your operations, reduce reliance on external suppliers, and improve cost-effectiveness. Cold Jet Dry Ice Production Solutions deliver a reliable supply of dry ice. Ensure you have the right amount, on demand.',
     cards = []
   } = blok;
   
@@ -57,20 +59,20 @@ const OnSiteProduction = ({ blok = {} }) => {
     <>
       <section className="wysiwyg-content container text-component margin-top--lg margin-bottom--none padding-top--xl padding-bottom--none container--xl">
         <div style={{ position: 'relative', padding: '20px', textAlign: 'center' }}>
-          <h5 style={{ 
-            fontSize: '1.5rem', 
-            fontFamily: '"Avenir Next Condensed", sans-serif', 
-            color: '#aed049', 
-            margin: '0 0 9.504px', 
-            lineHeight: '2' 
+          <h5 style={{
+            fontSize: '1.5rem',
+            fontFamily: '"Avenir Next Condensed", sans-serif',
+            color: '#aed049',
+            margin: '0 0 9.504px',
+            lineHeight: '2'
           }}>
-            <strong>{title}</strong>
+            <strong>{kicker}</strong>
           </h5>
           <h3 className="text--xxl balance-text" style={{ color: 'black' }}>
-            Cold Jet: Your Partner for Efficient On-Site Dry Ice Production
+            {title}
           </h3>
           <p className="text--md color--primary-light balance-text">
-            Experience the benefits of on-site dry ice production with a leading dry ice solutions provider. Gain <strong>greater control</strong> over your operations, <strong>reduce reliance on external suppliers</strong>, and <strong>improve cost-effectiveness</strong>. Cold Jet Dry Ice Production Solutions deliver <strong>a reliable supply of dry ice</strong>. Ensure you have the <strong>right amount, on demand</strong>.
+            {description}
           </p>
         </div>
       </section>
